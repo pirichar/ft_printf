@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <string.h>
 
 /*External functions permitted :
  * malloc, free, write, va_start, va_arg, va_copy, va_end
@@ -14,7 +15,14 @@
  * %u - To print an unsigned decimal (base 10) number
  * %x - to print a number in hexadecimal (base 16), with lowercase
  * %X - to print a number in hexadecimal (base 16, with uppercase
- * %% - to print a percent sign*/
+ * %% - to print a percent sign
+ *
+ * Bonus :
+ * flag : -
+ * flag : 0
+ * flag : .
+ *
+ * video a ecouter : https://www.youtube.com/watch?v=Y9kUWsyyChk */
 
 void	ft_putchar(char c)
 {
@@ -37,16 +45,16 @@ int	ft_putstring_int(char *str)
 int	ft_printf(const char *format, ...)
 {
 	int	sum;
-	va_list ap;
+	va_list VaList;
 
 	sum = 0;
-	va_start(ap, format);
-	//in case its just a string 
+	va_start(VaList, format);
+	//in case its just a string with no conversion
 	sum = ft_putstring_int((char *)format);
 	format++;
 
 	//
-	va_end(ap);
+	va_end(VaList);
 	printf("Sum in my function is = %i\n", sum);
 	return (sum);
 }
