@@ -263,7 +263,7 @@ int	ft_printf(const char *format, ...)
 		}
 	}
 	va_end(VaList);
-	printf("Sum in my function is = %i\n", sum);
+//	printf("Sum in my function is = %i\n", sum);
 	return (sum);
 }
 
@@ -271,6 +271,18 @@ int	ft_printf(const char *format, ...)
 
 int main(void)
 {
-	
-	ft_printf("Allo les amis\n j'essaye ici d'introduire une phrase %s\n", "LA DITE PHRASE");
+	ft_printf("-----TESTING THE STRING-----\n");
+	ft_printf("Allo les amis, j'essaye ici d'introduire une phrase = %s\n", "THIS IS A STRING");
+	ft_printf("-----TESTING THE INTEGER-----\n");
+	ft_printf("Allo les amis, j'essaye ici d'introduire un INT = %i\n", -23435567);
+	ft_printf("-----TESTING THE PERCENT-----\n");
+	ft_printf("Allo les amis, j'essaye ici d'introduire un POURCENT = %%\n");
+
+	char	*ptr= {"ALLO POPA"};
+	int 	*ptr2;
+
+	//ptr = NULL;
+	ptr2 = NULL;
+	printf("This is me printing the adress of my pointer with the real printf = %p\n", ptr);
+	printf("This is me printing the adress of my pointer with the real printf = %p\n", ptr2);	
 }
