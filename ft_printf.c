@@ -9,22 +9,31 @@
  * malloc, free, write, va_start, va_arg, va_copy, va_end
  *
  * Conversions to manage :
- * %c - To print a single Char
- * %s - To print a whole string
- * %p - The void * pointer printed in hexa
- * %d - to print a decimal (base 10) number
+ * %c - ASCII Character ;To print a single Char; Works with char and unsigned char
+ * %s - To print a whole string ; Works with char * char[]
+ * %p - The void * pointer printed in hexa prendre ; works with pointers
+ * %d - to print a decimal (base 10) integer; works with int
  * %i - to print an integer in base 10
- * %u - To print an unsigned decimal (base 10) number
- * %x - to print a number in hexadecimal (base 16), with lowercase
- * %X - to print a number in hexadecimal (base 16, with uppercase
- * %% - to print a percent sign
+ * %u - To print an unsigned decimal (base 10) number; works with unsigned int;
+ * %x - to print a number in hexadecimal lowcase, works with : short, unsigned short, unsigned int, int
+ * %X - to print a number in hexadecimal upcase, works with : short, unsigned short, unsigned int, int
+ * %% - to print a percent sign 
  *
  * Bonus :
- * flag : -
- * flag : 0
+ * MUST WORK TOGETHER
+ * flag : -   ; LEFT JUSTIFY
+ * flag : 0   ; PAD WITH LEADING ZEROS
  * flag : .
  *
- * video a ecouter : https://www.youtube.com/watch?v=Y9kUWsyyChk */
+ *WORK ALONE
+ * flag : #
+ * flag : + ; ALWAYS DISPLAY SIGN
+ * 
+ * flag width.precision
+ * Width  specifies the minimum number of characters to display
+ * Precision specifies the number of digits to display after decimal point
+ * video a ecouter : https://www.youtube.com/watch?v=Y9kUWsyyChk 
+ * video a ecouter : https://www.youtube.com/watch?v=nXuMuzgtsNw&t=556s */
 
 //HELPER FUNCTIONS
 void	ft_putchar(char c)
