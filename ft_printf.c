@@ -23,10 +23,10 @@
  * MUST WORK TOGETHER
  * flag : -   ; LEFT JUSTIFY
  * flag : 0   ; PAD WITH LEADING ZEROS
- * flag : .
+ * flag : .	  ;
  *
  *WORK ALONE
- * flag : #
+ * flag : #	;imprimer 0x devant les HEX
  * flag : + ; ALWAYS DISPLAY SIGN
  * 
  * flag width.precision
@@ -205,6 +205,64 @@ char	*ft_itoa(int n)
 	}
 	return (ft_swap(rtn));
 }
+/*
+int	ft_checkbase(char *base)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (base[0] == 0 || base[1] == 0)
+		return (1);
+	while (base[i])
+	{
+		if (base[i] == '+' || base[i] == '-')
+			return (1);
+		j = 1;
+		while (base[i + j])
+		{
+			if (base[i] == base[i + j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	ft_putnbr_base(int nbr, char *base)
+{
+	int		baseCount;
+	long	n;
+
+	n = nbr;
+	baseCount = ft_strlen(base);
+	if (ft_checkbase(base) == 0)
+	{
+		if (n < 0)
+		{
+			ft_putchar('-');
+			n = -n;
+		}
+		if (n >= baseCount)
+		{
+			ft_putnbr_base(n / baseCount, base);
+			ft_putnbr_base(n % baseCount, base);
+		}
+		else
+			ft_putchar(base[n]);
+	}
+}*/
+
+void ft_putnbro(size_t num, size_t base_len, char *base)
+{
+    char c;
+
+    if(num >= base_len)
+        ft_putnbro(num / base_len,  base_len, base);
+    c = base[(num % base_len)];
+    write(1, &c, 1);
+}
 
 
 // MY FUNCTION 
@@ -212,10 +270,12 @@ char	*ft_itoa(int n)
 int	ft_printf(const char *format, ...)
 {
 	int		sum;
-	va_list VaList;
+	va_list		 VaList;
 	int		PrintInteger;
-	char 	*pPrintString;
-	char	*IntegerString;
+	char	 	*pPrintString;
+	char		*IntegerString;
+	size_t		HexaPrint;
+
 
 	sum = 0;
 	va_start(VaList, format);
@@ -233,13 +293,19 @@ int	ft_printf(const char *format, ...)
 					format ++;
 					sum += ft_strlen(pPrintString);
 					break;
-
+				case 'd':
 				case 'i':
 					PrintInteger = va_arg(VaList, int);
 					IntegerString = ft_itoa(PrintInteger);
 					ft_putstring(IntegerString);
 					format++;
 					sum += ft_strlen(IntegerString);
+					break;
+				case 'p':
+					HexaPrint = va_arg(VaList, size_t);
+					ft_putstring("0x");
+					ft_putnbro(HexaPrint,16 , "0123456789abcdef");
+					format++;
 					break;
 				case '%':
 					ft_putchar('%');
@@ -285,4 +351,9 @@ int main(void)
 	ptr2 = NULL;
 	printf("This is me printing the adress of my pointer with the real printf = %p\n", ptr);
 	printf("This is me printing the adress of my pointer with the real printf = %p\n", ptr2);	
+	ft_printf("-----TESTING THE POINTER-----\n");
+	ft_printf("This is me printing the adress of my pointer with my ft_printf = %p\n", ptr);
+	ft_printf("This is me printing the adress of my pointerwith my ft_printf  = %p\n", ptr2);
+
+
 }
