@@ -14,14 +14,14 @@
  *
  * Bonus :
  * MUST WORK TOGETHER (SEEMS TO BE ONLY WITH INTS ?)
- * flag : -   ; LEFT JUSTIFY
+ * flag : -   ; LEFT JUSTIFY a - overides a 0
  * 		Left-justify within the given field width; Right justification is the default (see width sub-specifier).
- * flag : 0   ; PAD WITH LEADING ZEROS
+ * flag : 0   ; PAD WITH LEADING ZEROS; a - overrides a 0
  * 		Left-pads the number with zeroes (0) instead of spaces, where padding is specified (see width sub-specifier).
  * flag : .	  ;
  * 		
  *WORK ALONE
- * flag : #	;imprimer 0x devant les HEX #
+ * flag : #	;imprimer 0x devant les HEX #; No effect on c,d,s,u
 		Used with o, x or X specifiers the value is preceded with 0, 0x or 0X respectively for values different than zero.
 		Used with e, E and f, it forces the written output to contain a decimal point even if no digits would follow. 
  		By default, if no digits follow, no decimal point is written. 
@@ -127,7 +127,7 @@
 	printf("This is with the flag #  =  %#X\n", i);
 	printf("This is with the flag + (DOES NOT WORK) =  %X\n", i);
 	//testing %
-		printf("---------------TESTING THE %%---------------\n");
+	printf("---------------TESTING THE %%---------------\n");
 	printf("This is without any flags =  %%\n");
 	printf("This is with the flag - =  %-%\n");
 	printf("This is with the flag 0  =  %0%\n");

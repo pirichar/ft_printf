@@ -43,7 +43,7 @@ int	ft_printf(const char *format, ...)
 	int				sum;
 	va_list		 	VaList;
 	int				PrintInteger;
-	int				PrintUnsignedInt;
+	unsigned int	PrintUnsignedInt;
 	char	 		*pPrintString;
 	char			*IntegerString;
 	unsigned char	PrintChar;
@@ -52,7 +52,6 @@ int	ft_printf(const char *format, ...)
 
 	sum = 0;
 	va_start(VaList, format);
-//	sum = ft_putstring_int((char *)format);
 	while (*format)
 	{
 		if (*format == '%')
@@ -66,24 +65,28 @@ int	ft_printf(const char *format, ...)
 					ft_putnbro(HexaPrint, 16, "0123456789abcdef");	
 					format++;
 					break;
+					//to do : calculate the sum
 				}
-				if(*format == 'X')
+				else if(*format == 'X')
 				{
 					HexaPrint = va_arg(VaList, int);
 					ft_putnbro(HexaPrint, 16, "0123456789ABCDEF");	
 					format++;
 					break;
+					//to do : calculate the sum
 				}
-				if(*format == 'u')
+				else if(*format == 'u')
 				{
 					PrintUnsignedInt = va_arg(VaList, int);
 					IntegerString = ft_itoa(PrintUnsignedInt);
 					ft_putstring(IntegerString);
 					format++;
 					sum +=  ft_strlen(IntegerString);
+					free (IntegerString);
 					break;
+					//To do : fix the fac that it cant be a negative
 				}
-				if(*format =='c')
+				else if(*format =='c')
 				{
 					PrintChar = va_arg(VaList, int);
 					ft_putchar(PrintChar);
@@ -91,7 +94,7 @@ int	ft_printf(const char *format, ...)
 					sum++;
 					break;
 				}
-				if(*format == 's')
+				else if(*format == 's')
 				{
 					pPrintString = va_arg(VaList, char *);
 					ft_putstring(pPrintString);
@@ -99,31 +102,34 @@ int	ft_printf(const char *format, ...)
 					sum += ft_strlen(pPrintString);
 					break;
 				}
-				if(*format ==  'd' || *format == 'i')
+				else if(*format ==  'd' || *format == 'i')
 				{
 					PrintInteger = va_arg(VaList, int);
 					IntegerString = ft_itoa(PrintInteger);
 					ft_putstring(IntegerString);
 					format++;
 					sum += ft_strlen(IntegerString);
+					free (IntegerString);
 					break;
 				}
-				if(*format == 'p')
+				else if(*format == 'p')
 				{
 					HexaPrint = va_arg(VaList, size_t);
 					ft_putstring("0x");
+					sum +=2;
 					ft_putnbro(HexaPrint,16 , "0123456789abcdef");
 					format++;
 					break;
+					//to do = calculate how many bites were printed
 				}
-				if(*format =='%')
+				else if(*format =='%')
 				{
 					ft_putchar('%');
 					format++;
 					sum++;
 					break;
 				}
-				if(*format == '\0')
+				else if(*format == '\0')
 					break;
 				else
 				{
@@ -144,42 +150,4 @@ int	ft_printf(const char *format, ...)
 	va_end(VaList);
 //	printf("Sum in my function is = %i\n", sum);
 	return (sum);
-}
-
-
-
-int main(void)
-{
-	char	*ptr= {"ALLO POPA"};
-	int 	*ptr2;
-	ptr2 = NULL;
-
-	ft_printf("-----------------------TESTING THE CHAR-----------------------\n");
-	printf("Allo les amis, j'essaye ici d'introduire une phrase avec le VRAI PRINTF = %c\n", 'X');
-	ft_printf("Allo les amis, j'essaye ici d'introduire une phrase avec MON PRINTF = %c\n", 'X');
-	ft_printf("-----------------------TESTING THE STRING-----------------------\n");
-	printf("Allo les amis, j'essaye ici d'introduire une phrase avec le VRAI PRINTF = %s\n", "THIS IS A STRING WITH AN É");
-	ft_printf("Allo les amis, j'essaye ici d'introduire une phrase avec MON PRINTF = %s\n", "THIS IS A STRING WITH AN É");
-	ft_printf("-----------------------TESTING THE INTEGER-----------------------\n");
-	printf("Allo les amis, j'essaye ici d'introduire un INT  avec le VRAI PRINTF= %i\n", -23435567);
-	ft_printf("Allo les amis, j'essaye ici d'introduire un INT avec MON PRINTF = %i\n", -23435567);
-	ft_printf("-----------------------TESTING THE PERCENT-----------------------\n");
-	printf("Allo les amis, j'essaye ici d'introduire un POURCENT avec le VRAI PRINTF= %%\n");
-	ft_printf("Allo les amis, j'essaye ici d'introduire un POURCENT avec MON PRINTF = %%\n");
-	ft_printf("-----------------------TESTING THE POINTER-----------------------\n");
-	printf("This is me printing the adress of my pointer with the real printf = %p\n", ptr);
-	ft_printf("This is me printing the adress of my pointer with my ft_printf = %p\n", ptr);
-	printf("This is me printing the adress of my pointer with the real printf = %p\n", ptr2);	
-	ft_printf("This is me printing the adress of my pointerwith my ft_printf  = %p\n", ptr2);
-	ft_printf("-----------------------TESTING THE UNSIGNED INT-----------------------\n");
-	printf("This is me trying to print a negative int with U 0 THE REAL PRINTF  = %u\n", -1);
-	ft_printf("This is me trying to print a negative int with U with MY FT_PRINTF  = %u\n", -1);
-	printf("This is me trying to print a standard int with U with THE REAL PRINTF  = %u\n", 7324);
-	ft_printf("This is me trying to print a standard int with U with MY FT_PRINTF  = %u\n", 7324);
-	ft_printf("-----------------------TESTING THE lowcap HEXA -----------------------\n");
-	printf("This is me trying to print a standard int in HEXA with THE REAL PRINTF  = %x\n", 7324);
-	ft_printf("This is me trying to print a standard int in HEXA with MY FT_PRINTF  = %x\n", 7324);
-	ft_printf("-----------------------TESTING THE HIGHCAP HEXA -----------------------\n");
-	printf("This is me trying to print a standard int in HEXA with THE REAL PRINTF  = %X\n", 7324);
-	ft_printf("This is me trying to print a standard int in HEXA with MY FT_PRINTF  = %X\n", 7324);
 }
