@@ -57,87 +57,76 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			while(*format)
+			if(*format == 'x')
 			{
-				if(*format == 'x')
-				{
-					HexaPrint = va_arg(VaList, int);
-					ft_putnbro(HexaPrint, 16, "0123456789abcdef");	
-					format++;
+				HexaPrint = va_arg(VaList, int);
+				ft_putnbro(HexaPrint, 16, "0123456789abcdef");	
+				format++;
+				//to do : calculate the sum
+			}
+			else if(*format == 'X')
+			{
+				HexaPrint = va_arg(VaList, int);
+				ft_putnbro(HexaPrint, 16, "0123456789ABCDEF");	
+				format++;
+				//to do : calculate the sum
+			}
+			else if(*format == 'u')
+			{
+				PrintUnsignedInt = va_arg(VaList, int);
+				IntegerString = ft_itoa(PrintUnsignedInt);
+				ft_putstring(IntegerString);
+				format++;
+				sum +=  ft_strlen(IntegerString);
+				free (IntegerString);
+				//To do : fix the fac that it cant be a negative
+			}
+			else if(*format =='c')
+			{
+				PrintChar = va_arg(VaList, int);
+				ft_putchar(PrintChar);
+				format++;
+				sum++;
+			}
+			else if(*format == 's')
+			{
+				pPrintString = va_arg(VaList, char *);
+				ft_putstring(pPrintString);
+				format ++;
+				sum += ft_strlen(pPrintString);
+			}
+			else if(*format ==  'd' || *format == 'i')
+			{
+				PrintInteger = va_arg(VaList, int);
+				IntegerString = ft_itoa(PrintInteger);
+				ft_putstring(IntegerString);
+				format++;
+				sum += ft_strlen(IntegerString);
+				free (IntegerString);
+			}
+			else if(*format == 'p')
+			{
+				HexaPrint = va_arg(VaList, size_t);
+				ft_putstring("0x");
+				sum +=2;
+				ft_putnbro(HexaPrint,16 , "0123456789abcdef");
+				format++;
+				//to do = calculate how many bites were printed
+			}
+			else if(*format =='%')
+			{
+				ft_putchar('%');
+				format++;
+				sum++;
+			}
+			else if(*format == '\0')
 					break;
-					//to do : calculate the sum
-				}
-				else if(*format == 'X')
-				{
-					HexaPrint = va_arg(VaList, int);
-					ft_putnbro(HexaPrint, 16, "0123456789ABCDEF");	
-					format++;
-					break;
-					//to do : calculate the sum
-				}
-				else if(*format == 'u')
-				{
-					PrintUnsignedInt = va_arg(VaList, int);
-					IntegerString = ft_itoa(PrintUnsignedInt);
-					ft_putstring(IntegerString);
-					format++;
-					sum +=  ft_strlen(IntegerString);
-					free (IntegerString);
-					break;
-					//To do : fix the fac that it cant be a negative
-				}
-				else if(*format =='c')
-				{
-					PrintChar = va_arg(VaList, int);
-					ft_putchar(PrintChar);
-					format++;
-					sum++;
-					break;
-				}
-				else if(*format == 's')
-				{
-					pPrintString = va_arg(VaList, char *);
-					ft_putstring(pPrintString);
-					format ++;
-					sum += ft_strlen(pPrintString);
-					break;
-				}
-				else if(*format ==  'd' || *format == 'i')
-				{
-					PrintInteger = va_arg(VaList, int);
-					IntegerString = ft_itoa(PrintInteger);
-					ft_putstring(IntegerString);
-					format++;
-					sum += ft_strlen(IntegerString);
-					free (IntegerString);
-					break;
-				}
-				else if(*format == 'p')
-				{
-					HexaPrint = va_arg(VaList, size_t);
-					ft_putstring("0x");
-					sum +=2;
-					ft_putnbro(HexaPrint,16 , "0123456789abcdef");
-					format++;
-					break;
-					//to do = calculate how many bites were printed
-				}
-				else if(*format =='%')
-				{
-					ft_putchar('%');
-					format++;
-					sum++;
-					break;
-				}
-				else if(*format == '\0')
-					break;
-				else
-				{
-					ft_putchar('%');
-					ft_putchar(*format);
-					format++;
-					sum +=2;
-				}
+			else
+			{
+				ft_putchar('%');
+				ft_putchar(*format);
+				format++;
+				sum +=2;
 			}
 		}
 		else
@@ -148,6 +137,5 @@ int	ft_printf(const char *format, ...)
 		}
 	}
 	va_end(VaList);
-//	printf("Sum in my function is = %i\n", sum);
 	return (sum);
 }
