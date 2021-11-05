@@ -36,14 +36,11 @@
  * video a ecouter : https://www.youtube.com/watch?v=Y9kUWsyyChk 
  * video a ecouter : https://www.youtube.com/watch?v=nXuMuzgtsNw&t=556s */
 
-// MY FUNCTION 
-
 int	ft_printf(const char *format, ...)
 {
 	int				sum;
 	va_list		 	VaList;
 	int				PrintInteger;
-	unsigned int	PrintUnsignedInt;
 	char	 		*pPrintString;
 	char			*IntegerString;
 	unsigned char	PrintChar;
@@ -60,21 +57,20 @@ int	ft_printf(const char *format, ...)
 			if(*format == 'x')
 			{
 				HexaPrint = va_arg(VaList, int);
-				ft_putnbro(HexaPrint, 16, "0123456789abcdef");	
+				ft_putnbro_rtn(HexaPrint, 16, "0123456789abcdef", &sum);	
 				format++;
-				//to do : calculate the sum
 			}
 			else if(*format == 'X')
 			{
 				HexaPrint = va_arg(VaList, int);
-				ft_putnbro(HexaPrint, 16, "0123456789ABCDEF");	
+				ft_putnbro_rtn(HexaPrint, 16, "0123456789ABCDEF", &sum);	
 				format++;
-				//to do : calculate the sum
 			}
 			else if(*format == 'u')
 			{
-				PrintUnsignedInt = va_arg(VaList, int);
-				IntegerString = ft_itoa(PrintUnsignedInt);
+				PrintInteger = va_arg(VaList, int);
+				printf("PrintInterger is = %i\n", PrintInteger);
+				IntegerString = ft_itoa(PrintInteger);
 				ft_putstring(IntegerString);
 				format++;
 				sum +=  ft_strlen(IntegerString);
@@ -109,9 +105,8 @@ int	ft_printf(const char *format, ...)
 				HexaPrint = va_arg(VaList, size_t);
 				ft_putstring("0x");
 				sum +=2;
-				ft_putnbro(HexaPrint,16 , "0123456789abcdef");
+				ft_putnbro_rtn(HexaPrint, 16 , "0123456789abcdef", &sum);
 				format++;
-				//to do = calculate how many bites were printed
 			}
 			else if(*format =='%')
 			{
@@ -136,6 +131,5 @@ int	ft_printf(const char *format, ...)
 			sum++;
 		}
 	}
-	va_end(VaList);
-	return (sum);
+	va_end(VaList);	return (sum);
 }
