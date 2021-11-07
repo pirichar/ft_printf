@@ -27,5 +27,15 @@ int main(void)
 	sum = 0;
 	ft_putnbro_rtn(num,16,"0123456789ABCDEF", &sum);
 	printf("Sum is %i\n", sum);
+	printf("%u\n", 0);
+	printf("%u\n", -1);
+	printf("%u\n", -2);
+	printf("%u\n", -3);
+	printf("%u\n", -4);
+	printf("%u\n", -5);
+	printf("%u\n", -6);
+	printf("%u\n", -7);
+
 	
 }
+

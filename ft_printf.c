@@ -40,7 +40,7 @@ int	ft_printf(const char *format, ...)
 {
 	int				sum;
 	va_list		 	VaList;
-	int				PrintInteger;
+	long long		PrintInteger;
 	char	 		*pPrintString;
 	char			*IntegerString;
 	unsigned char	PrintChar;
@@ -68,14 +68,14 @@ int	ft_printf(const char *format, ...)
 			}
 			else if(*format == 'u')
 			{
-				PrintInteger = va_arg(VaList, int);
-				printf("PrintInterger is = %i\n", PrintInteger);
+				PrintInteger = va_arg(VaList, long long);
+				if (PrintInteger < 0)
+					PrintInteger = (4294967296 + PrintInteger);
 				IntegerString = ft_itoa(PrintInteger);
 				ft_putstring(IntegerString);
 				format++;
 				sum +=  ft_strlen(IntegerString);
 				free (IntegerString);
-				//To do : fix the fac that it cant be a negative
 			}
 			else if(*format =='c')
 			{
