@@ -15,7 +15,7 @@
  * %p - The void * pointer printed in hexa prendre ; works with pointers - CHECKED
  * %d - to print a decimal (base 10) integer; works with int - CHECKED
  * %i - to print an integer in base 10   - CHECKED 
- * %u - To print an unsigned decimal (base 10) number; works with unsigned int;  - DONE NOT TOTALLY WORKING THO **
+ * %u - To print an unsigned decimal (base 10) nmber; works with unsigned int;  - DONE NOT TOTALLY WORKING THO **
  * %x - to print a number in hexadecimal lowcase, works with : short, unsigned short, unsigned int, int - CHECKED
  * %X - to print a number in hexadecimal upcase, works with : short, unsigned short, unsigned int, int - CHECKED
  * %% - to print a percent sign  - CHECKED **
