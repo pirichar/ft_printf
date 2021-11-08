@@ -1,27 +1,18 @@
 #include "./libft/libft.h"
 
-int	ft_printf(const char *format, ...)
-{
-	int				sum;
-	va_list		 	VaList;
-	long long		PrintInteger;
-	char	 		*pPrintString;
-	char			*IntegerString;
-	//unsigned char	PrintChar;
-	//size_t			HexaPrint;
-
-
-	sum = 0;
-	va_start(VaList, format);
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			format++;
+format++;
 			if(*format == 'x')
-				ft_putnbro_rtn(va_arg(VaList, int), 16, "0123456789abcdef", &sum);	
+			{
+				HexaPrint = va_arg(VaList, int);
+				ft_putnbro_rtn(HexaPrint, 16, "0123456789abcdef", &sum);	
+				format++;
+			}
 			else if(*format == 'X')
-				ft_putnbro_rtn(va_arg(VaList, int), 16, "0123456789ABCDEF", &sum);	
+			{
+				HexaPrint = va_arg(VaList, int);
+				ft_putnbro_rtn(HexaPrint, 16, "0123456789ABCDEF", &sum);	
+				format++;
+			}
 			else if(*format == 'u')
 			{
 				PrintInteger = va_arg(VaList, long long);
@@ -29,15 +20,22 @@ int	ft_printf(const char *format, ...)
 					PrintInteger = (4294967296 + PrintInteger);
 				IntegerString = ft_itoa(PrintInteger);
 				ft_putstring(IntegerString);
+				format++;
 				sum +=  ft_strlen(IntegerString);
 				free (IntegerString);
 			}
 			else if(*format =='c')
-				sum += ft_putchar_rtn(va_arg(VaList, int));
+			{
+				PrintChar = va_arg(VaList, int);
+				ft_putchar(PrintChar);
+				format++;
+				sum++;
+			}
 			else if(*format == 's')
 			{
 				pPrintString = va_arg(VaList, char *);
 				ft_putstring(pPrintString);
+				format ++;
 				sum += ft_strlen(pPrintString);
 			}
 			else if(*format ==  'd' || *format == 'i')
@@ -45,31 +43,30 @@ int	ft_printf(const char *format, ...)
 				PrintInteger = va_arg(VaList, int);
 				IntegerString = ft_itoa(PrintInteger);
 				ft_putstring(IntegerString);
+				format++;
 				sum += ft_strlen(IntegerString);
 				free (IntegerString);
 			}
 			else if(*format == 'p')
 			{
+				HexaPrint = va_arg(VaList, size_t);
 				ft_putstring("0x");
 				sum +=2;
-				ft_putnbro_rtn(va_arg(VaList, size_t), 16 , "0123456789abcdef", &sum);
+				ft_putnbro_rtn(HexaPrint, 16 , "0123456789abcdef", &sum);
+				format++;
 			}
 			else if(*format =='%')
-				sum += ft_putchar_rtn('%');
-
+			{
+				ft_putchar('%');
+				format++;
+				sum++;
+			}
 			else if(*format == '\0')
 					break;
 			else
 			{
-				sum += ft_putchar_rtn('%');
-				sum += ft_putchar_rtn(*format);
+				ft_putchar('%');
+				ft_putchar(*format);
+				format++;
+				sum +=2;
 			}
-		}
-		else
-			sum += ft_putchar_rtn(*format);
-
-		format++;
-	}
-	va_end(VaList);	
-	return (sum);
-}
