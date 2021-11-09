@@ -85,11 +85,26 @@ int main(void)
 	MyRtn = ft_printf("%x\n", 7324);
 	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
 
+	ft_printf("-----------------------TESTING THE lowcap HEXA with a NEGATIVE -----------------------\n");
+	ft_printf("With the real printf I am printing = ");
+	RealRtn = printf("%x\n", -100);
+	ft_printf("With my printf I am Printing = ");
+	MyRtn = ft_printf("%x\n", -100);
+	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
+
 	ft_printf("-----------------------TESTING THE HIGHCAP HEXA -----------------------\n");
 	ft_printf("With the real printf I am printing = ");
 	RealRtn = printf("%X\n", 7324);
 	ft_printf("With my printf I am Printing = ");
 	MyRtn = ft_printf("%X\n", 7324);
 	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
+
+	ft_printf("-----------------------TESTING THE HIGHCAP HEXA with a large number -----------------------\n");
+	ft_printf("With the real printf I am printing = ");
+	RealRtn = printf("%X\n", 2147483647);
+	ft_printf("With my printf I am Printing = ");
+	MyRtn = ft_printf("%X\n", 2147483647);
+	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
+
 
 }
