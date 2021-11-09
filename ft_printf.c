@@ -6,7 +6,7 @@
 /*   By: pirichar <pirichar@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:13:59 by pirichar          #+#    #+#             */
-/*   Updated: 2021/11/09 16:16:41 by pirichar         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:18:15 by pirichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void	ft_parse(char **format, int *sum, va_list va_list)
 		(*sum) += ft_putchar_rtn(**format);
 	}		
 }
-
-
 
 int	ft_printf(const char *format, ...)
 {
