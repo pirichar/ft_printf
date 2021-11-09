@@ -11,8 +11,8 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			//ft_parse(&format, &sum, VaList);
-			format++;
+			ft_parse((char **)&format, &sum, VaList);
+			/*format++;
 			if(*format == 'x')
 				ft_putnbro_rtn(va_arg(VaList, int), 16, "0123456789abcdef", &sum);	
 			else if(*format == 'X')
@@ -29,13 +29,11 @@ int	ft_printf(const char *format, ...)
 				ft_putnbro_rtn_pointer(va_arg(VaList, size_t), 16 , "0123456789abcdef", &sum);
 			else if(*format =='%')
 				sum += ft_putchar_rtn('%');
-			else if(*format == '\0') // pas nécessaire je crois 
-					break;
 			else
 			{
 				sum += ft_putchar_rtn('%');
 				sum += ft_putchar_rtn(*format);
-			}
+			}*/
 		}
 		else
 			sum += ft_putchar_rtn(*format);
