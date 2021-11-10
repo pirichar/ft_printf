@@ -35,11 +35,18 @@ int main(void)
 	MyRtn = ft_printf("%s\n", "THIS IS A STRING WITH AN É");
 	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
 
+	ft_printf("-----------------------TESTING EMPTY STRING-----------------------\n");
+	ft_printf("With the real printf I am printing = ");
+	RealRtn = printf("%s\n", "");
+	ft_printf("With my printf I am Printing = ");
+	MyRtn = ft_printf("%s\n", "");
+	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
+
 	ft_printf("-----------------------TESTING THE INTEGER-----------------------\n");
 	ft_printf("With the real printf I am printing = ");
-	RealRtn = printf("%i\n", -23435567);
+	RealRtn = printf("%d %d\n", 2147483647, (int)-2147483648);
 	ft_printf("With my printf I am Printing = ");
-	MyRtn = ft_printf("%i\n", -23435567);
+	MyRtn = ft_printf("%d %d\n", 2147483647, (int)-2147483648);
 	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
 
 	ft_printf("-----------------------TESTING THE PERCENT-----------------------\n");
