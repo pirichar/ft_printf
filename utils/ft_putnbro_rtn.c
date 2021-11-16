@@ -6,13 +6,13 @@
 /*   By: pirichar <pirichar@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 10:04:07 by pirichar          #+#    #+#             */
-/*   Updated: 2021/11/16 09:05:42 by pirichar         ###   ########.fr       */
+/*   Updated: 2021/11/16 09:38:26 by pirichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbro_rtn(long long num, long long base_len, char *base, int *sum)
+void	ft_putnbro_rtn(size_t num, size_t base_len, char *base, int *sum)
 {
 	char	c;
 

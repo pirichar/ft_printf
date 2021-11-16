@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include "./utils/ft_printf.h"
+#include <limits.h>
 
 int main(void)
 {
@@ -119,6 +120,20 @@ int main(void)
 	RealRtn = printf("%X\n", 2147483647);
 	ft_printf("With my printf I am Printing = ");
 	MyRtn = ft_printf("%X\n", 2147483647);
+	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
+
+	ft_printf("-----------------------TESTING THE HIGHCAP HEXA with a fuckin huge long -----------------------\n");
+//	ft_printf("With the real printf I am printing = ");
+//	RealRtn = printf("%X\n", 9223372036854775807LL);
+	ft_printf("With my printf I am Printing = ");
+	MyRtn = ft_printf("%X\n", 9223372036854775807LL);
+	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
+
+	ft_printf("-----------------------TESTING THE HIGHCAP HEXA with LONG_MAX-----------------------\n");
+//	ft_printf("With the real printf I am printing = ");
+//	RealRtn = printf("%X\n", LONG_MAX);
+	ft_printf("With my printf I am Printing = ");
+	MyRtn = ft_printf("%X\n", LONG_MAX);
 	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
 
 
