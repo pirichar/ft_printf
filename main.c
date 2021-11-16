@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include "./utils/printf.h"
+#include "./utils/ft_printf.h"
 
 int main(void)
 {
@@ -40,6 +40,14 @@ int main(void)
 	RealRtn = printf("%s\n", "");
 	ft_printf("With my printf I am Printing = ");
 	MyRtn = ft_printf("%s\n", "");
+	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
+
+	ft_printf("-----------------------TESTING EMPTY POINTER-----------------------\n");
+	char *str = NULL;
+	ft_printf("With the real printf I am printing = ");
+	RealRtn = printf("%s\n", str);
+	ft_printf("With my printf I am Printing = ");
+	MyRtn = ft_printf("%s\n\0", str);
 	printf("This is the real return = %i and this is my return = %i\n", RealRtn, MyRtn);
 
 	ft_printf("-----------------------TESTING THE INTEGER-----------------------\n");

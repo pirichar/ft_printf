@@ -6,19 +6,19 @@
 /*   By: pirichar <pirichar@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:13:59 by pirichar          #+#    #+#             */
-/*   Updated: 2021/11/10 21:19:50 by pirichar         ###   ########.fr       */
+/*   Updated: 2021/11/16 09:05:47 by pirichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./utils/printf.h"
+#include "./utils/ft_printf.h"
 
 static void	ft_parse(char **format, int *sum, va_list va_list)
 {
 	(*format)++;
 	if (**format == 'x')
-		ft_putnbro_rtn(va_arg(va_list, size_t), 16, "0123456789abcdef", sum);
+		ft_putnbro_rtn(va_arg(va_list, long long), 16, "0123456789abcdef", sum);
 	else if (**format == 'X')
-		ft_putnbro_rtn(va_arg(va_list, size_t), 16, "0123456789ABCDEF", sum);
+		ft_putnbro_rtn(va_arg(va_list, long long), 16, "0123456789ABCDEF", sum);
 	else if (**format == 'u')
 		ft_putnbro_rtn(va_arg(va_list, unsigned int), 10, "0123456789", sum);
 	else if (**format == 'c')
